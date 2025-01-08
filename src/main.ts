@@ -3,6 +3,8 @@ import lin from './index'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
   <button id="cachebtn">cacheProxy方法</button>
   <button id="getcache">getcache方法</button>
+   <button id="toCharacter">取词器</button>
+   <div id="toCharactertext"></div>
 </div>
 `
 
@@ -26,10 +28,11 @@ document.querySelector<HTMLDivElement>('#cachebtn')!.onclick = async () => {
   console.log('res', res)
 }
 
-// document.querySelector<HTMLDivElement>('#getcache')!.onclick = () => {
-//   console.log($lin.cache.getCache())
-// }
+document.querySelector<HTMLDivElement>('#getcache')!.onclick = () => {
+  console.log($lin.cache.getCache())
+}
 
+// ------------------------------------- 取词器-----------------
 var stream = [{
   value: "Spring Festival 名词，意为春节，是中国最重要的传统节日，如We celebrate the Spring Festival every year.（我们每年都庆祝春节。）",
   index: 1
@@ -43,12 +46,27 @@ var stream = [{
 }
 ]
 
-var c = $lin.toCharacter()(stream)
+var segment = $lin.toCharacter()
 
-document.querySelector<HTMLDivElement>('#getcache')!.onclick = () => {
-  c.next().then(res => {
-    console.log(res.value)
-  })
+const datalist = segment({
+  text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
+  locale: 'en',
+  segment: (value: string) => { return value.split('') }
+})
+document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
+  var audio = 5*1000
+  var arr = [...datalist]
+  var index = 0
+  var interval = audio / arr.length
+  var timer = setInterval(() => {
+    ++index
+    if(index > arr.length) {
+      clearInterval(timer)
+      return
+    }
+    document.getElementById("toCharactertext")!.innerHTML = arr.slice(0, index).join('')
+    // console.log( arr.slice(0, index).join(''))
+  }, interval);
 }
 
 
