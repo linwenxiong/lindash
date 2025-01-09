@@ -24,49 +24,24 @@ async function apiGetdatas(prams: Object) {
 
 document.querySelector<HTMLDivElement>('#cachebtn')!.onclick = async () => {
   var rand = Math.floor(Math.random() * 100)
-  const res = await $lin.cache.cache(apiGetdatas, { name: rand })
+  const res = await $lin.cacheModel.cache(apiGetdatas, { name: rand })
   console.log('res', res)
 }
 
 document.querySelector<HTMLDivElement>('#getcache')!.onclick = () => {
-  console.log($lin.cache.getCache())
+  console.log($lin.cacheModel.getCache())
 }
 
 // ------------------------------------- 取词器-----------------
-var stream = [{
-  value: "Spring Festival 名词，意为春节，是中国最重要的传统节日，如We celebrate the Spring Festival every year.（我们每年都庆祝春节。）",
-  index: 1
-},
-{
-  value: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
-  index: 2
-}, {
-  value: "It's the most important festival in Chin",
-  index: 3
-}
-]
-
-var segment = $lin.toCharacter()
-
-const datalist = segment({
-  text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
-  locale: 'en',
-  segment: (value: string) => { return value.split('') }
-})
 document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
-  var audio = 5*1000
-  var arr = [...datalist]
-  var index = 0
-  var interval = audio / arr.length
-  var timer = setInterval(() => {
-    ++index
-    if(index > arr.length) {
-      clearInterval(timer)
-      return
+    $lin.printModel.lprint({
+    min: 10,
+    text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
+    locale: 'en',
+    callback: (result: string) => { 
+      document.querySelector<HTMLDivElement>('#toCharactertext')!.innerHTML = result
     }
-    document.getElementById("toCharactertext")!.innerHTML = arr.slice(0, index).join('')
-    // console.log( arr.slice(0, index).join(''))
-  }, interval);
+  })
 }
 
 

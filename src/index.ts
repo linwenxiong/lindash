@@ -1,8 +1,8 @@
 import cacheproxy from './utils/cacheProxy'
-import { toCharacter } from './utils/print'
-var cache = new cacheproxy()
-
+import Print from './utils/print'
+var cacheModel = new cacheproxy()
+var printModel = new Print()
 export default {
-    cache,
-    toCharacter
+    printModel,
+    cacheModel
 }
