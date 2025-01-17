@@ -1,8 +1,13 @@
-import cacheproxy from './utils/cacheProxy'
-import Print from './utils/print'
-var cacheModel = new cacheproxy()
-var printModel = new Print()
+import Cacheproxy from './model/cacheProxy'
+import Print from './model/print'
+import { fontAnimte, delFont} from './model/tools'
+// var cacheModel = new Cacheproxy()
+// var printModel = new Print()
 export default {
-    printModel,
-    cacheModel
+    delFont,
+    fontAnimte,
+    Cacheproxy,
+    Print
+    // printModel,
+    // cacheModel
 }

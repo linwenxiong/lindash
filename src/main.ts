@@ -1,4 +1,4 @@
-import lin from './index'
+import lds from './index'
 // import { setupCounter } from './utils/counter.ts'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
   <button id="cachebtn">cacheProxy方法</button>
@@ -8,7 +8,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
 </div>
 `
 
-var $lin = lin
+ 
 
 
 // 模拟数据请求
@@ -22,22 +22,31 @@ async function apiGetdatas(prams: Object) {
 }
 
 
+// 使用缓存代理需要先new一下
+var cache = new lds.Cacheproxy()
+var print = new lds.Print()
+
+// 使用缓存代理
 document.querySelector<HTMLDivElement>('#cachebtn')!.onclick = async () => {
   var rand = Math.floor(Math.random() * 100)
-  const res = await $lin.cacheModel.cache(apiGetdatas, { name: rand })
+  const res = await cache.cache(apiGetdatas, { name: rand })
   console.log('res', res)
 }
 
+
+// 获取缓存的数据列表
 document.querySelector<HTMLDivElement>('#getcache')!.onclick = () => {
-  console.log($lin.cacheModel.getCache())
+  console.log(cache.getCache())
 }
 
 // ------------------------------------- 取词器-----------------
 document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
-    $lin.printModel.lprint({
-    min: 10,
-    text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
+  print.lprint({
+    animte: true,
+    second: 10,
     locale: 'en',
+    text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
+ 
     callback: (result: string) => { 
       document.querySelector<HTMLDivElement>('#toCharactertext')!.innerHTML = result
     }
