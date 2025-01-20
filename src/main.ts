@@ -3,6 +3,7 @@ import lds from './index'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
   <button id="cachebtn">cacheProxy方法</button>
   <button id="getcache">getcache方法</button>
+  <button id="jsload">js延迟加载</button>
    <button id="toCharacter">取词器</button>
    <div id="toCharactertext"></div>
 </div>
@@ -52,6 +53,10 @@ document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
     }
   })
 }
-
+// js懒加载的使用方法
+document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
+ await lds.loadScript({ url: "https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" })
+  console.log('加载完成')
+}
 
 

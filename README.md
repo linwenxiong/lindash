@@ -30,3 +30,15 @@ async function apiGetdatas(prams: Object) {
 const res = await _cache.cache(apiGetdatas, { name: 'rand' })  // 第二次请求会直接返回缓存数据
 
 ```
+
+
+
+# js延迟加载
+- lds.loadScript
+
+```typescript
+document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
+ await lds.loadScript({ url: "https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" })
+  console.log('加载完成')
+}
+```

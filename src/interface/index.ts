@@ -9,7 +9,18 @@ export interface ToWordOptions {
 
 export interface PrintOptions {
     animte?: boolean,
-    text: string, 
-    second: number, 
+    text: string,
+    second: number,
     callback: Function
+}
+
+export interface UrlParams {
+    [key: string]: string;
+}
+
+
+export interface LoadScripts {
+    url: string;
+    // success?: Function;
+    // error?: Function;
 }
