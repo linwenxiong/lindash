@@ -79,3 +79,20 @@ export function deepCopy<T>(temp: T):T {
   return objs as T;
 }
 
+export function setStorage(key: string, value: any): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    console.error('item:', e);
+  }
+}
+
+export function getStorage<T>(key: string): T | null {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  } catch (e) {
+    console.error('item:', e);
+    return null;
+  }
+}
