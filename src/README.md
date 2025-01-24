@@ -31,12 +31,11 @@ const res = await _cache.cache(apiGetdatas, { name: 'rand' })  // 第二次请�
 
 ```
 
-
-
 # js延迟加载
-- lds.loadScript
+- **lds.loadScript**
 
 ```typescript
+import lds from 'lindash'
 document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
  await lds.loadScript({ url: "https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" })
   console.log('加载完成')

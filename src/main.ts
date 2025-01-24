@@ -6,6 +6,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
   <button id="jsload">js延迟加载</button>
    <button id="toCharacter">取词器</button>
    <div id="toCharactertext"></div>
+   <button id="deepclone">deepclone</button>
+   <button id="deepclone2">deepclone2</button>
 </div>
 `
 
@@ -47,7 +49,6 @@ document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
     second: 10,
     locale: 'en',
     text: "根据题干关键词“the most important festival”，可在原文中找到关键句“It's the most important(最重要的)festival in China.”。",
- 
     callback: (result: string) => { 
       document.querySelector<HTMLDivElement>('#toCharactertext')!.innerHTML = result
     }
@@ -59,4 +60,15 @@ document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
   console.log('加载完成')
 }
 
-
+  var obj = [{ a: 1, b: 2, c: { d: 3 } },{name:32432}]
+// js懒加载的使用方法
+document.querySelector<HTMLDivElement>('#deepclone')!.onclick = async () => {
+  const res = lds.deepCopy(obj)
+ 
+   console.log(res)
+ }
+ // js懒加载的使用方法
+document.querySelector<HTMLDivElement>('#deepclone2')!.onclick = async () => {
+   console.log(obj)
+ }
+ 
