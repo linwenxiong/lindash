@@ -55,5 +55,27 @@ export function loadScript(params: LoadScripts): Promise<void> {
     };
     document.head.appendChild(script);
   });
-
 }
+// 已经编码url，或者已经编码的文本
+export function urlDecode(code: string) { // 解码
+  return decodeURIComponent(code)
+}
+
+export function urlEnCode(code: string) { // 编码
+  return encodeURIComponent(code)
+}
+
+// 对象深拷贝
+export function deepCopy<T>(temp: T):T {
+  const objs: Partial<T> = {} as Partial<T>;
+  for (let key in temp) {
+    var value = temp[key]
+    if (value instanceof Object) {
+      objs[key] = deepCopy(value)
+    } else {
+      objs[key] = value
+    }
+  }
+  return objs as T;
+}
+

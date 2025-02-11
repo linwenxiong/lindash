@@ -7,6 +7,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
    <button id="toCharacter">分词打字机</button>
    <button id="toOneCharacter">逐个字打印</button>
    <div id="toCharactertext"></div>
+   <button id="deepclone">deepclone</button>
+   <button id="deepclone2">deepclone2</button>
 </div>
 `
 
@@ -76,4 +78,15 @@ document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
   console.log('加载完成')
 }
 
-
+  var obj = [{ a: 1, b: 2, c: { d: 3 } },{name:32432}]
+// js懒加载的使用方法
+document.querySelector<HTMLDivElement>('#deepclone')!.onclick = async () => {
+  const res = lds.deepCopy(obj)
+ 
+   console.log(res)
+ }
+ // js懒加载的使用方法
+document.querySelector<HTMLDivElement>('#deepclone2')!.onclick = async () => {
+   console.log(obj)
+ }
+ 
