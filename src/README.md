@@ -41,3 +41,27 @@ document.querySelector<HTMLDivElement>('#jsload')!.onclick = async () => {
   console.log('加载完成')
 }
 ```
+
+# 分词打字机
+- 引入Print类。
+
+```typescript
+import lds from 'lindash'
+const print = new lds.Print()
+var str = ""
+document.querySelector<HTMLDivElement>('#toCharacter')!.onclick = () => {
+  print.lprint({
+    animte: true,
+    second: 10, // 多少秒输出完整个句子
+    locale: 'en',
+    text: "lindash is a powerful tool library designed to simplify common tasks in the development process. It provides a variety of practical functional modules to help developers improve work efficiency. lindash是一个功能强大的工具库，旨在简化开发过程中的常见任务。它提供了多种实用的功能模块，帮助开发者提高工作效率。",
+    callback: (result: string) => {
+      str += result
+      document.querySelector<HTMLDivElement>('#toCharactertext')!.innerHTML = str
+    },
+    end: () => {
+      console.log('打印完成')
+    }
+  })
+}
+```
