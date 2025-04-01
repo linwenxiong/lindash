@@ -1,3 +1,7 @@
+import { DrewRowFonts } from './ctxs'
+export type {
+    DrewRowFonts
+}
 export type CallbackFunction = (result: string) => void;
 export type End = () => void;
 export interface ToWordOptions {
@@ -26,3 +30,4 @@ export interface LoadScripts {
     // success?: Function;
     // error?: Function;
 }
+

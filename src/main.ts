@@ -9,12 +9,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
    <div id="toCharactertext"></div>
    <button id="deepclone">deepclone</button>
    <button id="deepclone2">deepclone2</button>
+   <h2>画布</h2>
+   <canvas id="canvas" width="800" height="150" style="border:1px solid #cfcfcf"></canvas>
 </div>
 `
-
- 
-
-
 // 模拟数据请求
 async function apiGetdatas(prams: Object) {
   console.log('发起请求了,参数是：', prams)
@@ -90,3 +88,14 @@ document.querySelector<HTMLDivElement>('#deepclone2')!.onclick = async () => {
    console.log(obj)
  }
  
+//  ctxs的使用方法
+const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+var lctx = new lds.Ctxs()
+let prams = {
+  text: "你好啊水水水水水三十六开发斯洛伐克撒娇",
+  ctx: ctx,
+  x: 0,
+  y: 10
+}
+lctx.fnDrewRowFonts(prams)
