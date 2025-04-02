@@ -91,11 +91,20 @@ document.querySelector<HTMLDivElement>('#deepclone2')!.onclick = async () => {
 //  ctxs的使用方法
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+ctx.textBaseline = "top";
 var lctx = new lds.Ctxs()
 let prams = {
   text: "你好啊水水水水水三十六开发斯洛伐克撒娇",
   ctx: ctx,
   x: 0,
-  y: 10
+  y: 0,
+  fontSize: 20
 }
 lctx.fnDrewRowFonts(prams)
+lctx.fnDrewPath({
+  ctx: ctx,
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100
+})
