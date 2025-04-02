@@ -93,6 +93,10 @@ const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 ctx.textBaseline = "top";
 var lctx = new lds.Ctxs()
+// await lctx.fnCustomFont({ 
+//   fontName: "myfont",
+//   fontUrl: "url(http://172.20.10.6:8080/AlimamaDongFangDaKai-Regular.woff2)"
+// })
 let prams = {
   text: "你好啊水水水水水三十六开发斯洛伐克撒娇",
   ctx: ctx,

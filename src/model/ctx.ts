@@ -1,4 +1,4 @@
-import type { DrewRowFonts, DrewPath } from "../interface";
+import type { DrewRowFonts, DrewPath, CustomFont } from "../interface";
 class Ctxs {
   constructor() {}
   /**
@@ -15,6 +15,22 @@ class Ctxs {
       option.x = +option.x + metrics.width;
     }
   }
+
+    /**
+   * @description 加载自定义字体，自定义字体加载完毕，可以直接通过自定义的字体名称来使用
+   */
+    async fnCustomFont(option: CustomFont) {
+      try {
+        const { fontName, fontUrl} = option
+          const font = new FontFace(fontName, fontUrl, { style: 'normal', weight: '100' });
+          await font.load();
+          document.fonts.add(font);
+          await document.fonts.ready;
+      } catch(err) {
+          console.warn("加载自定义字体出错", err)
+          return Promise.reject()
+      }
+    }
 
   /**
    * @description 绘制矩形

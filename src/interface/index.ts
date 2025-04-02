@@ -1,7 +1,8 @@
-import { DrewRowFonts, DrewPath } from './ctxs'
+import { DrewRowFonts, DrewPath , CustomFont} from './ctxs'
 export type {
     DrewPath,
-    DrewRowFonts
+    DrewRowFonts,
+    CustomFont
 }
 export type CallbackFunction = (result: string) => void;
 export type End = () => void;

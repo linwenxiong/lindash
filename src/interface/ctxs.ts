@@ -14,3 +14,8 @@ export interface DrewPath {
   width: number;
   height: number;
 }
+
+export interface CustomFont {
+  fontName: string;
+  fontUrl: string;
+}
