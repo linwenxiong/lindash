@@ -31,6 +31,7 @@ class Print {
             options.callback( txt )
           } else {
              clearInterval(this.timer)
+             options.end && options.end()
              return
           } 
         }, interval);
@@ -65,7 +66,8 @@ class Print {
         this.timer = setInterval(() => {
           if (!this.isPause) {
             if (index < options.text.length) {
-              txt =  options.animte ?  options.text[index] : options.text.slice(0, index)
+              // txt =  options.animte ?  options.text[index] : options.text.slice(0, index)
+              txt =  options.text[index]
               ++index
               options.callback(txt)
               return

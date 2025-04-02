@@ -1,14 +1,20 @@
+import { DrewRowFonts } from './ctxs'
+export type {
+    DrewRowFonts
+}
 export type CallbackFunction = (result: string) => void;
+export type End = () => void;
 export interface ToWordOptions {
     animte?: boolean,
     second: number, // 秒
     text: string; // 文本
     locale?: 'en' | 'zh';
     callback: CallbackFunction;
+    end?: End // 打印结束
 }
 
 export interface PrintOptions {
-    animte?: boolean,
+    // animte?: boolean,
     text: string,
     second: number,
     callback: Function
@@ -24,3 +30,4 @@ export interface LoadScripts {
     // success?: Function;
     // error?: Function;
 }
+
