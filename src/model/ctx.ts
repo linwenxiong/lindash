@@ -57,9 +57,11 @@ class Ctxs {
   }
 
     /**
-   * @description 通过宽度进行换
-   * @param {maxWidth} 超出多少宽度换行
-   * @param {keyWord} 关键字标红
+    * @description 通过宽度进行换行绘制文本，支持关键字高亮
+    * @param {maxWidth} 超出多少宽度换行
+    * @param {keyWord} 关键字标红
+    * @param {options} 包含绘制所需的各种参数，如上下文、文本、位置、字体等
+    * @returns {Promise<number>} 返回绘制文本的总宽度
    */
     fnLimitWidthDrewRowFont(options: LimitWidthDrewRowFont) {
       return new Promise((resolve, reject) => {
