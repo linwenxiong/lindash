@@ -10,6 +10,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
    <button id="deepclone">deepclone</button>
    <button id="deepclone2">deepclone2</button>
    <h2>画布</h2>
+   <button id="fnLimitWidthDrewRowFont">根据宽度大小自动换行</button>
    <canvas id="canvas" width="800" height="150" style="border:1px solid #cfcfcf"></canvas>
 </div>
 `
@@ -93,18 +94,24 @@ const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 ctx.textBaseline = "top";
 var lctx = new lds.Ctxs()
+
+// #region 自定义字体
 // await lctx.fnCustomFont({ 
 //   fontName: "myfont",
-//   fontUrl: "url(http://172.20.10.6:8080/AlimamaDongFangDaKai-Regular.woff2)"
+//   fontUrl: "url(http://localhost:3000/assets/AlimamaDongFangDaKai-Regular.woff2)"
 // })
-let prams = {
-  text: "你好啊水水水水水三十六开发斯洛伐克撒娇",
-  ctx: ctx,
-  x: 0,
-  y: 0,
-  fontSize: 20
-}
+// #endregion
+
+// let prams = {
+//   text: "你好啊水水水娇士",
+//   ctx: ctx,
+//   x: 0,
+//   y: 0,
+//   fontSize: 50
+// }
 // lctx.fnDrewRowFonts(prams)
+
+// #region 画布绘制路径
 // lctx.fnDrewPath({
 //   ctx: ctx,
 //   x: 0,
@@ -112,17 +119,35 @@ let prams = {
 //   width: 100,
 //   height: 100
 // })
+// #endregion
 
-lctx.fnLimitWidthDrewRowFont({
-  fontFamily: "cursive",
-  text: "斯柯达撒旦金克拉十分艰苦拉萨附近看了看是大家可怜见看来都是卡机撒大大分厘卡机设计费拉开放假啊士大夫就撒开的飞机喀什地方艰苦拉萨大家发生的深度交流看法的是连接",
-  ctx: ctx,
-  x: 6,
-  y: 20,
-  keyWord: "【播放】",
-  maxWidth: 780,
-  keyColor: "red",
-  fontSize: 15
-}).then((res) => {
-  console.log(res)
-})
+// #region 通过宽度控制字体自动换行
+document.querySelector<HTMLDivElement>('#fnLimitWidthDrewRowFont')!.onclick = async () => {
+  lctx.fnLimitWidthDrewRowFont({
+    fontFamily: "myfont",
+    text: `谁来守护光明 至天荒地老
+    忽有一位少年 映入众生眼帘
+    一路无畏向前 气贯长虹之巅
+    他的使命生来就与众不同
+    他灵魂燃烧如火焰熊熊
+    铸就了无与伦比的坚定
+    他总期望风雨之后现彩虹
+    在黑暗中等待黎明
+    神选之子总绝地逢生
+    日月在流年里变幻
+    星辰在掌纹中旋转
+    纵使风惊云涌气象万千
+    受过的伤 都结痂
+    成护身铠甲`,
+    ctx: ctx,
+    x: 6,
+    y: 20,
+    keyWord: "眼帘火焰熊熊铠甲",
+    maxWidth: 780,
+    keyColor: "red",
+    fontSize: 15
+  }).then((res) => {
+    console.log(res)
+  })
+}
+// #endregion

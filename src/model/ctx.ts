@@ -33,7 +33,7 @@ class Ctxs {
       document.fonts.add(font);
       await document.fonts.ready;
     } catch (err) {
-      console.warn("加载自定义字体出错", err);
+      console.error("加载自定义字体出错", err);
       return Promise.reject();
     }
   }
@@ -82,6 +82,7 @@ class Ctxs {
           }
           resolve(this.gfontlen)
         } catch (err) {
+          console.warn("绘制横向文字出错", err);
           reject(err)
         }
       })
