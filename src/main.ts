@@ -104,11 +104,25 @@ let prams = {
   y: 0,
   fontSize: 20
 }
-lctx.fnDrewRowFonts(prams)
-lctx.fnDrewPath({
+// lctx.fnDrewRowFonts(prams)
+// lctx.fnDrewPath({
+//   ctx: ctx,
+//   x: 0,
+//   y: 0,
+//   width: 100,
+//   height: 100
+// })
+
+lctx.fnLimitWidthDrewRowFont({
+  fontFamily: "cursive",
+  text: "斯柯达撒旦金克拉十分艰苦拉萨附近看了看是大家可怜见看来都是卡机撒大大分厘卡机设计费拉开放假啊士大夫就撒开的飞机喀什地方艰苦拉萨大家发生的深度交流看法的是连接",
   ctx: ctx,
-  x: 0,
-  y: 0,
-  width: 100,
-  height: 100
+  x: 6,
+  y: 20,
+  keyWord: "【播放】",
+  maxWidth: 780,
+  keyColor: "red",
+  fontSize: 15
+}).then((res) => {
+  console.log(res)
 })

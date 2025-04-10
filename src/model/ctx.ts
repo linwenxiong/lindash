@@ -1,6 +1,9 @@
-import type { DrewRowFonts, DrewPath, CustomFont } from "../interface";
+import type { DrewRowFonts, DrewPath, CustomFont, LimitWidthDrewRowFont } from "../interface";
 class Ctxs {
-  constructor() {}
+  gfontlen: number; // 全局字体长度
+  constructor() {
+    this.gfontlen = 0
+  }
   /**
    * @description 绘制横向文字
    */
@@ -16,21 +19,24 @@ class Ctxs {
     }
   }
 
-    /**
+  /**
    * @description 加载自定义字体，自定义字体加载完毕，可以直接通过自定义的字体名称来使用
    */
-    async fnCustomFont(option: CustomFont) {
-      try {
-        const { fontName, fontUrl} = option
-          const font = new FontFace(fontName, fontUrl, { style: 'normal', weight: '100' });
-          await font.load();
-          document.fonts.add(font);
-          await document.fonts.ready;
-      } catch(err) {
-          console.warn("加载自定义字体出错", err)
-          return Promise.reject()
-      }
+  async fnCustomFont(option: CustomFont) {
+    try {
+      const { fontName, fontUrl } = option;
+      const font = new FontFace(fontName, fontUrl, {
+        style: "normal",
+        weight: "100",
+      });
+      await font.load();
+      document.fonts.add(font);
+      await document.fonts.ready;
+    } catch (err) {
+      console.warn("加载自定义字体出错", err);
+      return Promise.reject();
     }
+  }
 
   /**
    * @description 绘制矩形
@@ -49,6 +55,37 @@ class Ctxs {
     // ctx.fill();
     ctx.stroke();
   }
+
+    /**
+   * @description 通过宽度进行换
+   * @param {maxWidth} 超出多少宽度换行
+   * @param {keyWord} 关键字标红
+   */
+    fnLimitWidthDrewRowFont(options: LimitWidthDrewRowFont) {
+      return new Promise((resolve, reject) => {
+        try {
+          let { ctx, text, x, y, keyWord, maxWidth, keyColor, fontSize, fontFamily } = options;
+          ctx.font = `${fontSize}px ${fontFamily || 'Arial'}`;
+          let startx = x
+          this.gfontlen = x
+          for (let i = 0; i < text.length; i++) {
+            var metrics = ctx.measureText(text[i]);
+            ctx.fillStyle = keyWord.includes(text[i]) ? keyColor : "#222733";
+            ctx.fillText(text[i], x, y);
+            x = x + metrics.width;
+            this.gfontlen = this.gfontlen + metrics.width
+            const height = parseInt(ctx.font) * 1.2; // 通常使用字体大小的1.2倍作为行高
+            if(x >= maxWidth) {
+              x = startx
+              y = y + height
+            }
+          }
+          resolve(this.gfontlen)
+        } catch (err) {
+          reject(err)
+        }
+      })
+    }
 }
 
 export default Ctxs;
