@@ -103,20 +103,6 @@ var lctx = new lds.Ctxs()
   })
 ```
 
----
-
-## 类属性
-- **`gfontlen: number`**
-  - 描述：全局字体长度，用于记录绘制文本的总宽度。
-  - 默认值：`0`
-
----
-
-## 构造函数
-- **`constructor()`**
-  - 初始化 `gfontlen` 属性为 `0`。
-
----
 
 ## 方法介绍
 
@@ -126,12 +112,11 @@ var lctx = new lds.Ctxs()
 #### 参数
 | 参数名 | 类型 | 描述 |
 |--------|------|------|
-| `option` | `DrewRowFonts` | 包含绘制所需的各种参数。 |
-| `option.ctx` | `CanvasRenderingContext2D` | 绘制上下文。 |
-| `option.text` | `string` | 要绘制的文本内容。 |
-| `option.fontSize` | `number` | 字体大小（单位：像素）。 |
-| `option.x` | `number` | 文本起始位置的 x 坐标。 |
-| `option.y` | `number` | 文本起始位置的 y 坐标。 |
+| `ctx` | `CanvasRenderingContext2D` | 绘制上下文。 |
+| `text` | `string` | 要绘制的文本内容。 |
+| `fontSize` | `number` | 字体大小（单位：像素）。 |
+| `x` | `number` | 文本起始位置的 x 坐标。 |
+| `y` | `number` | 文本起始位置的 y 坐标。 |
 
 #### 实现逻辑
 - 设置字体样式为 `Arial`，并根据文本长度逐字符绘制。

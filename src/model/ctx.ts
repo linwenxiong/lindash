@@ -1,4 +1,4 @@
-import type { DrewRowFonts, DrewPath, CustomFont, LimitWidthDrewRowFont } from "../interface";
+import type { DrewRowFonts, DrewPath, CustomFont, LimitWidthDrewRowFont, SymbolDrewRowFont } from "../interface";
 class Ctxs {
   gfontlen: number; // 全局字体长度
   constructor() {
@@ -89,6 +89,46 @@ class Ctxs {
         }
       })
     }
+    /**
+   * @description 通过<br>换行符换行，需要提供换行符，换行符替换字符： 你好<br>啊 == 你好#啊
+   * @param {sybol} 换行符号（自定义）
+   * @param {replce} 换行符替换字符（自定义）
+   */
+    fnSymbolDrewRowFont (options: SymbolDrewRowFont) {
+      return new Promise((resolve, reject) => {
+        try {
+          let { text, ctx, x, y, keyWord, keyColor = "#E41D1D", sybol = "<br>", replce = "#" } = options;
+          let line = 1
+          let startx = options.x
+          var startIdx = options.text.indexOf(keyWord)
+          var endIdx = keyWord.length + startIdx;
+          if (text.indexOf(sybol)!== -1) {
+              // 正则里面写变量未处理
+              text = text.replace(/<br>/g, replce);
+          }
+          for (let i = 0; i < text.length; i++) {
+              ctx.fillStyle = "#222733";
+              if (startIdx !== -1 && i >= startIdx && i < endIdx) {
+                  ctx.fillStyle = keyColor
+              }
+              var metrics = ctx.measureText(text[i]);
+              text[i] !== replce && ctx.fillText(text[i], x, y);
+              x = x + metrics.width;
+              const height = parseInt(ctx.font) * 1.2; // 通常使用字体大小的1.2倍作为行高
+              if (text[i] === replce) {
+                  x = startx
+                  y = y + height
+                  line++
+              }
+          }
+          resolve(line)
+        } catch (err) {
+          console.warn("fnSymbolDrewRowFont出错", err);
+          reject(err)
+        }
+      })
+  }
+
 }
 
 export default Ctxs;

@@ -1,5 +1,6 @@
-import { DrewRowFonts, DrewPath , CustomFont, LimitWidthDrewRowFont} from './ctxs'
+import { DrewRowFonts, DrewPath , CustomFont, LimitWidthDrewRowFont, SymbolDrewRowFont} from './ctxs'
 export type {
+    SymbolDrewRowFont,
     DrewPath,
     DrewRowFonts,
     CustomFont,

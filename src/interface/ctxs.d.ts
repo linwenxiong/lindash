@@ -31,4 +31,13 @@ export interface LimitWidthDrewRowFont {
   keyColor: string; // 高亮颜色
 }
 
-
+export interface SymbolDrewRowFont {
+  text: string; 
+  ctx: CanvasRenderingContext2D; 
+  x: number; 
+  y: number; 
+  keyWord: string;
+  keyColor: string; 
+  sybol: string; 
+  replce: string;
+}
