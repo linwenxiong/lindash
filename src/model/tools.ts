@@ -96,3 +96,14 @@ export function getStorage<T>(key: string): T | null {
     return null;
   }
 }
+
+/**
+ * @description 接收一个Promise,并返回一个元组[error, data]
+ * @param {Promise<T>} promise - 要处理的Promise 
+ * @returns {Promise<[Error | null, T | undefined]>}
+ */
+export function to<T>(promise:Promise<T>):Promise<[Error | null, T | undefined]> {
+  return promise
+  .then<[null, T]>((data: T) => [null, data])
+  .catch<[Error, undefined]>((err:Error) => [err, undefined])
+}

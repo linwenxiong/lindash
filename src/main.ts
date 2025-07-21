@@ -9,6 +9,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
    <div id="toCharactertext"></div>
    <button id="deepclone">deepclone</button>
    <button id="deepclone2">deepclone2</button>
+   <button id="catchtry">捕获异常</button>
    <h2>画布</h2>
    <button id="fnLimitWidthDrewRowFont">根据宽度大小自动换行</button>
    <canvas id="canvas" width="800" height="150" style="border:1px solid #cfcfcf"></canvas>
@@ -17,9 +18,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `<div id="box">
 // 模拟数据请求
 async function apiGetdatas(prams: Object) {
   console.log('发起请求了,参数是：', prams)
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve([prams])
+      resolve(null)
+      // reject("错误了")
     }, 2000)
   })
 }
@@ -28,7 +30,6 @@ async function apiGetdatas(prams: Object) {
 // 使用缓存代理需要先new一下
 var cache = new lds.Cacheproxy()
 var print = new lds.Print()
-
 // 使用缓存代理
 document.querySelector<HTMLDivElement>('#cachebtn')!.onclick = async () => {
   var rand = Math.floor(Math.random() * 100)
@@ -149,5 +150,18 @@ document.querySelector<HTMLDivElement>('#fnLimitWidthDrewRowFont')!.onclick = as
   }).then((res) => {
     console.log(res)
   })
+}
+// #endregion
+
+
+// #region 捕获异常函数
+document.querySelector<HTMLDivElement>('#catchtry')!.onclick = async () => {
+ const [err, res] =  await lds.to(apiGetdatas({name:12}))
+ if(err) {
+  console.log("错误了", err)
+  return
+}
+var data = res || []
+console.log(err, res)
 }
 // #endregion
