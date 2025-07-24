@@ -162,6 +162,6 @@ document.querySelector<HTMLDivElement>('#catchtry')!.onclick = async () => {
   return
 }
 var data = res || []
-console.log(err, res)
+  console.log(err, res)
 }
 // #endregion
